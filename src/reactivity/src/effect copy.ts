@@ -1,7 +1,6 @@
 import { extend } from "../shared";
 
 let activeEffect;
-let shouldTrack = false;
 const targetMap = new Map();
 
 export class ReactiveEffect {
@@ -15,14 +14,11 @@ export class ReactiveEffect {
     this.scheduler = scheduler;
   }
   run() {
-    if (!this.active) {
-      return  this._fn();
+    if (this.active) {
+      activeEffect = this;
     }
-    shouldTrack = true
-    activeEffect = this;
-
     const res = this._fn();
-    shouldTrack = false
+    activeEffect = null;
     return res;
   }
   stop() {
@@ -65,7 +61,7 @@ export function trackEffects(dep) {
 }
 
 export function isTracking() {
-  return activeEffect && shouldTrack;
+  return activeEffect && activeEffect.active;
 }
 
 export function trigger(target, key) {

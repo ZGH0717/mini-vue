@@ -1,5 +1,5 @@
-import { reactive } from "../src/reactive";
-import { effect, stop } from "../src/effect";
+import { reactive } from "../first-review/reactive";
+import { effect, stop } from "../first-review/effect";
 describe("effect", () => {
   it("happy path", () => {
     const user = reactive({
@@ -61,14 +61,14 @@ describe("effect", () => {
     let dummy;
     let dummy2 = 1;
     const obj = reactive({ prop: 1, obj: 1 });
-    const test = reactive({ prop: 1 });
+    const test = reactive({ prop2: 1 });
     const runner = effect(() => {
       dummy = obj.prop;
     });
     obj.prop = 2;
     expect(dummy).toBe(2);
     effect(() => {
-      dummy2 += test.prop;
+      dummy2 += test.prop2;
     });
     stop(runner);
     obj.prop++;

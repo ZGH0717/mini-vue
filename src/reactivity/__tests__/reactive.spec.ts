@@ -1,4 +1,4 @@
-import { isReactive, reactive, isProxy } from "../src/reactive";
+import { isReactive, reactive, isProxy } from "../first-review/reactive";
 describe("reactive", () => {
   it("happy path", () => {
     const original = { foo: 1 };

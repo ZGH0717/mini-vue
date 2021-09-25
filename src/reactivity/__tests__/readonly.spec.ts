@@ -1,4 +1,4 @@
-import { isProxy, isReadonly, readonly } from "../src/reactive";
+import { isProxy, isReadonly, readonly } from "../first-review/reactive";
 
 describe("readonly", () => {
   it("should make nested values readonly", () => {
